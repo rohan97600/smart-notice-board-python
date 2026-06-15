@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="navbar">
+    <h2>Register</h2>
+</div>
+
+<div class="container">
+    <h2>Create Account</h2>
+
+    <form method="POST">
+
+        <input type="text" name="username" placeholder="Username" required>
+
+        <input type="password" name="password" placeholder="Password" required>
+
+        <select name="department">
+            <option value="MCA">MCA</option>
+            <option value="MBA">MBA</option>
+        </select>
+
+        <br><br>
+        <select name="class">
+            <option value="FY">FY</option>
+            <option value="SY">SY</option>
+        </select>
+
+        <button class="button">Register</button>
+
+    </form>
+</div>
+
+</body>
+</html>

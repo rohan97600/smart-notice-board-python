@@ -1,0 +1,41 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <title>Notice Board</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css')}}">
+</head> 
+<body> 
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="/add">Add Notice</a>
+        <a href="/login">Login</a>
+        <a href="/logout">Logout</a>
+    </div>
+    <div class="container">
+        <h1>Notice Borad</h1>
+        <p style="color: gray;">Stay updated with latest announcements</p>
+        
+        {% for notice in notices %}
+            <div class="notice-card">
+                <h3>
+                    {{ notice[1]}}
+                </h3>
+                <p>
+                    {{notice[2] }}
+                </p>
+                <span class="priority {{ notice[7] }}">{{ notice[7] }}s</span>
+                <div class="notice-meta">
+                    Category: {{ notice[3] }} | Expiry:{{ notice[5] }}
+                </div>
+                {% if session['role'] == 'admin' %}
+                    <a href="/delete/ {{ notice[0] }}" class="delete-btn" onclick="return confirm('Delete?')">Delete</a> 
+                {% endif %}
+               
+            </div>
+        {% endfor %}
+    </div>    
+</body>
+</html>

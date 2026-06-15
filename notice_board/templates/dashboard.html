@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="navbar">
+        <h2>NoticeBoard</h2>
+        <div>
+            <a href="/dashboard">Home</a>
+            {% if session['role'] == 'admin' %}
+                <a href="/add">Add</a>
+            {% endif %}
+            <a href="/logout">Logout</a>
+            
+        </div>
+    </div>
+    <div class="hero">
+        <h1>Notice Board</h1>
+        <p>Stay Updated With Latest Announcements</p>
+    </div>
+    <form method="GET">
+        <input type="text" name="search" placeholder="Search Notices..." value="{{ search }}">
+        <select name="category">
+            <option value="">All category</option>
+            <option value="exam" {% if category == 'exam' %}selected{% endif %}>Exam</option>
+            <option value="event"{% if category == 'event' %}selected{% endif %}>Event</option>
+        </select>
+        <select name="priority">
+            <option value="">All priority</option>
+            <option value="urgent"{% if priority == 'urgent' %}selected{% endif %}>Urgent</option>
+            <option value="important"{% if priority == 'important' %}selected{% endif %}>Important</option>
+            <option value="normal"{% if priority == 'normal' %}selected{% endif %}>Normal</option>
+        </select>
+        <button class="button">Search</button>
+    </form>
+    <div class="container">
+        
+
+        {% for notice in notices %}
+            <div class="notice-card">
+                <h3>{{ notice[1] }}</h3>
+                <p>{{ notice[2] }}</p>
+
+                <span class="priority {{ notice[7] }}">
+                    {{ notice[7] }}
+                </span>
+                <div class="notice-actions">
+                    {% if notice[11] %}
+                        <a class="btn link-btn" href="{{ notice[11] }}" >Open Link</a>
+                    {% endif %}
+                    
+                    {% if notice[10] %}
+                        <a class="btn file-btn" href="{{ url_for('static',filename='uploads/'+notice[10]) }}" >View Attachments</a>
+                    {% endif %}
+                </div>    
+                <div class="notice-meta">
+                    category: {{ notice[3] }} |
+                    expiry: {{ notice[5] }}
+                </div>
+                {% if session['role'] == 'admin' %}
+                    <a href="/delete/ {{ notice[0] }}" class="delete-btn" onclick="return confirm('Delete?')">Delete</a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

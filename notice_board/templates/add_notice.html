@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>   
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <title>
+        Add Notice
+    </title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css')}}">
+</head>  
+<body>
+    <div class="navbar">
+        <h2>Add Notice</h2>
+        <div>
+            <a href="/dashboard">Home</a>
+           
+            <a href="/logout">Logout</a>
+        </div>    
+    </div>
+    <div class="container">
+        <h2>Add New Notice</h2>
+        <a href="/dashboard" class="button">Back to Dashboard</a><br><br>
+        
+        <form method="POST" enctype="multipart/form-data">
+            <input type="text " name="title" placeholder="Title" required><br><br>
+            <textarea name="content" placeholder="Content" required></textarea><br><br> 
+            <input type="text" name="category" placeholder="Category"><br><br>
+            <select name="department">
+                
+                <option value="mca">MCA</option>
+                <option value="mba">MBA</option>
+                
+            </select><br><br>
+            <select name="class">
+                <option value="FY">First Year</option>
+                <option value="SY">Second Year</option>
+            </select><br><br>    
+            <select name="priority">
+
+                <option value="normal">Normal</option>
+                <option value="important">Important</option>
+                <option value="urgent">Urgent</option>
+
+            </select><br><br>
+            <input type="date" name="expiry_date"><br><br>
+            <input type="file" name="file" class="file-input"><br><br>
+            <input type="url" name="link" placeholder="optional link"><br><br>
+            <button class="button">
+                Add Notice   
+            </button>
+        </form>   
+    </div>
+</body>
+</html>
