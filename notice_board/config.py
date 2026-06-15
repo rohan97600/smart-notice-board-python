@@ -1,4 +1,4 @@
 MYSQL_HOST = 'localhost'
 MYSQL_USER = 'root'
-MYSQL_PASSWORD = 'rohan8240!'
+MYSQL_PASSWORD = 'your_password'
 MYSQL_DB = 'notice_board'
